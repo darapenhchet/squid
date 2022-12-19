@@ -1,0 +1,13 @@
+version: "3"
+services:
+  proxy:
+    image: ubuntu/squid
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf
+      - ./passwords:/etc/squid/passwords
+      - ./blacklist-sites.acl:/etc/squid/blacklist-sites.acl
+      - ./ERR_BLACKLIST_URL:/usr/share/squid/errors/English/ERR_BLACKLIST_URL
+      - ./access.log:/var/log/squid/access.log
+    restart: always
